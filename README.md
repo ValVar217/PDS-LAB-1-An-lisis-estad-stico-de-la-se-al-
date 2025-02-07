@@ -4,7 +4,7 @@ Informe de laboratorio acerca del Análisis estadístico de una señal Biomedica
 # INTRODUCCION
 Mediante la realización de este laboratorio correspondiente a la asignatura de Procesamiento Digital de Señales (PDS), pudimos realizar un codigo utilizando Python (Spyder) para poder calcular y analizar datos estadísticos como la media, desviación estándar e histogramas de una señal Fisiologica obtenida de la base de datos PhysioNet. Además de ello, pudimos evaluar distintos tipos de ruido mediante la relación señal-ruido (SNR), todo lo anterior teniendo en cuenta la señal elegida (Neuropatía - EMG), con el objetivo de mejorar la interpretacion de dichas imagenes para un optimo diagnostico en el area de la salud. 
 
-# ADQUISICION DE DATOS
+# ANALISIS ESTADISTICO DE LA SEÑAL
 # Señal (Emg) - Physio.Net:
 Para llevar a cabo esta práctica, comenzamos buscando una señal electromiográfica (EMG) disponible en PhysioNet, pues la señal que elegimos corresponde a un pasiente con una Neuropatia. 
 Para ser más especificos, la condicion del Paciente (Neuropatia/Neuropatia Periferica), basicamente consiste en un problema de los nervios que produce dolor, adormecimiento, cosquilleo, hinchazón y debilidad muscular en distintas partes del cuerpo. Esto por lo general, comienza en las manos o los pies y empeora con el tiempo. El cáncer o su tratamiento, como la quimioterapia, pueden causar neuropatía. También pueden causarla las lesiones físicas, las infecciones, las sustancias tóxicas o las afecciones como diabetes, insuficiencia de los riñones o desnutrición. Por otro lado, en una señal electromiográfica (EMG) de un paciente con esta condicion, podríamos observar varias alteraciones en la actividad muscular, tales como:  
@@ -20,16 +20,13 @@ Ahora bien, luego de tener presente esta informacion, seguimos para descargar lo
 ![WhatsApp Image 2025-02-06 at 7 59 35 PM](https://github.com/user-attachments/assets/3cbfddf6-fe48-4e82-902b-c402e1e92217)  
 |*Figura 1: Señal EMG de un paciente con neuropatía.*|
 
-Pues de esta señal EMG correspondiente a una neuropatía, se pueden observar varias características relevantes como lo pueden ser:
-
-1. Variaciones irregulares en la amplitud: Se aprecia una señal con picos positivos y negativos marcados, lo que podría indicar actividad anormal de las unidades motoras.  
-2. Presencia de picos elevados y espaciados: Pueden representar descargas espontáneas o fibrilaciones, comunes en neuropatías debido a la disfunción nerviosa.  
-3. Baja frecuencia en ciertas secciones: Hay momentos en los que la actividad es menos intensa, lo que puede reflejar una reducción en la activación muscular debido a la degeneración nerviosa.  
-4. Patrón irregular en la señal: En una señal EMG normal, se espera una activación más uniforme y coordinada. Sin embargo, en esta imagen, la señal muestra patrones desorganizados que pueden deberse a una afectación en la conducción nerviosa.  
+## Contexto:  
+La señal Fisiologica Electromiografica (EMG) Corresponde al registro en el **musculo tibial anterior** de un Paciente de **62 años**, sexo **masculino**, con diagnostico de dolor lumbar cronico y **neuropatia** radiculopatía derecha en la raíz nerviosa L5.   
+La señal fue capturada mediante un electrodo concéntrico de 25mm, mientras el paciente realizaba una dosiflexión suave del pie contra resistencia, seguida de relajación.
 
 Por todo lo anterior, es escencial que podamos realizar las mediciones que se realizaran con el paso del codigo (Informe) para un optimo analisis por lo que tenemos lo siguiente:
 
-# Importacion de la señal & Librerias:
+## Importacion de la señal & Librerias:
 El análisis como tal de los datos de la señal se realiza por medio de la programación mencionada, esto junto a librerías en donde tenemos a Numpy y SciPy para poder calcular nuestros estadísticos descriptivos, pues nuestro código comienza con la implementación de las librerías necesarias para el óptimo funcionamiento de nuestro proyecto: 
 
 ```python
@@ -52,12 +49,12 @@ plt.title("Señal EMG Neuropatía")
 plt.legend()
 plt.grid() 
  ```
-Pues esta sección es esencial ya que permite la manipulación del sistema de archivos y directorios, para leer y manipular registros de datos biomédicos almacenados que en este caso se encuentra en formato PhysioNet, para la generación de gráficos en este caso de la señal EMG en el dominio del tiempo, utilizando la librería de  matplotlib, se grafica la señal, asignando un color y una etiqueta incluyendo los ejes para indicar la unidad de tiempo y la amplitud (Caracteristicas estadísticas) utilizando herramientas de Python.
+Pues esta sección es esencial ya que permite la manipulación del sistema de archivos y directorios, para leer y manipular registros de datos biomédicos almacenados que en este caso se encuentra en formato PhysioNet, para la generación de gráficos en este caso de la señal EMG en el dominio del tiempo, utilizando la librería de  matplotlib, se grafica la señal, incluyendo los ejes para indicar la unidad de tiempo y la amplitud (Caracteristicas estadísticas).  
  
 # Estadisticos Descriptivos:
 Posteriormente, empezando con la medida de nuestros estadísticos descriptivos, que corresponden con la medición de la Media de la señal, la desviación estándar, el Coeficiente de variación, Histogramas y la Función de probabilidad: 
 
-# 1.*La Media:*
+## 1.*La Media:*
    Se calcula la media de la señal de dos formas:
    
    a) Manualmente: Sumando todos los valores y dividiendo por el total de datos.  
@@ -78,7 +75,7 @@ mean=np.mean(datos)
 print(f"Media Numpy: {mean}")
 ```
 	 
-# 2.*Desviacion Estandar:*
+## 2.*Desviacion Estandar:*
    Se calcula la desviación estándar de la señal, que mide la dispersión de los valores respecto a 
    la media:
 
@@ -105,7 +102,7 @@ desviacion_muestral = np.std(datos, ddof=1)  # ddof=1 para muestra
 print(f"Desviación estándar Numpy: {desviacion_muestral:.4f}")
 ```
    
-# 3.*Coeficiente de Variación:*
+## 3.*Coeficiente de Variación:*
    El siguiente segmento de nuestro código, consiste en calcular el coeficiente de variación (CV) 
    que en este caso expresa la relación entre la desviación estándar y la media como un porcentaje, 
    es decir, Indica la variabilidad de la señal en comparación con su valor promedio:    
@@ -121,7 +118,7 @@ print(f"Coeficiente de Variación: {CV}%")
 cv = (desviacion_muestral / mean) * 100
 print(f"Coeficiente de Variación Numpy: {cv:.2f}%")
 ```
-# *Comparación de resultados:*  
+## *Comparación de resultados:*  
 Los resultados obtenidos manualmente y mediante **NumPy** muestran una gran similitud, con diferencias mínimas en la precisión de los decimales como se puede evidenciar acontinuación:  
 
 ![WhatsApp Image 2025-02-06 at 8 02 33 PM (1)](https://github.com/user-attachments/assets/0cc37e88-aed8-4c81-a6c9-ff589a3ede4e)   
@@ -133,9 +130,8 @@ Los resultados obtenidos manualmente y mediante **NumPy** muestran una gran simi
 
 3. Por ultimo, tenemos el **Coeficiente de Variación**, expresado en porcentaje, también presenta una leve diferencia en la cantidad de cifras decimales, pero el valor general es consistente entre ambos métodos:  Manual=2091.0712% y NumPy=2091.07%  
 
-En conclusión, NumPy es una herramienta eficiente y precisa para el cálculo estadístico, ya que proporciona resultados rápidos con una precisión adecuada para la mayoría de las aplicaciones.  
 
-# 4.*Histograma & Función de Probabilidad:* 
+## 4.*Histograma & Función de Probabilidad:* 
 Este gráfico muestra la distribución de los valores de la señal EMG mediante un histograma y una estimación de densidad Kernel (KDE/permite visualizar de manera más clara la tendencia subyacente de la señal, evitando la dependencia de los límites de los bins del histograma), lo que proporciona una representación continua de la distribución de probabilidad de la amplitud de nuestra señal:
 
 ![WhatsApp Image 2025-02-06 at 7 59 53 PM](https://github.com/user-attachments/assets/ef88262a-5503-4c30-a268-3bec4370eb1d)  
@@ -164,14 +160,14 @@ plt.ylabel("Densidad de Probabilidad")
 plt.legend()
 plt.show()
 ```   
-Del grafico de la *Figura 3* presentado muestra un **histograma** junto con la estimación de la **densidad de probabilidad (Campana de Gauss)** de una señal procesada digitalmente.    
+Del grafico de la *Figura 3* presentado muestra un **histograma** junto con la estimación de la **Función de probabilidad (Campana de Gauss)** de una señal procesada digitalmente.    
   Pues de este grafico, podemos decir que (barras naranjas) representa la distribución de los valores de amplitud de la señal, evidenciando que la mayoría de los datos se concentran en torno a 0 (Cero), con una forma aproximadamente simétrica.  
 Por otro lado, La curva azul representa una estimación de la distribución de probabilidad de los valores de la señal en donde se observa un pico pronunciado en torno a 0 (cero), lo que indica que la amplitud de la señal tiene una alta concentración en este valor, con menor probabilidad de valores alejados, lo que significa que esta en un Rango normal, es decir, es simetrica al rededor del eje en donde generalmente se encuentra la media.  
 
 Es clave resaltar que se utiliza la herramienta graficadora plt. donde los datos de la señal son guardados por intervalos y renombrados "bins" en este caso se tienen 50 intervalos. Por otra parte se importa la biblioteca "gaussian_kde" para realizar una estimación del comportamiento de los intervalos bins y graficar una tendencia los más posibles cercanos (Función de probabilidad), como se muestra en la imagen
 ____________________________________________________________________________________________________
 
-# RELACIÓN SEÑAL RUIDO (SNR):  
+## RELACIÓN SEÑAL RUIDO (SNR):  
 **Ruido en la Señal y Relación Señal-Ruido (SNR)**    
 En nuestro contexto del procesamiento digital de señales, el **ruido** es cualquier perturbación no deseada que se superpone a la señal de interés, afectando su calidad y precisión. Estas interferencias pueden tener diversas fuentes, como componentes electrónicos, interferencias ambientales, artefactos fisiológicos (en señales biomédicas), o errores en la adquisición y transmisión de datos.    
 
@@ -186,7 +182,7 @@ Se caracteriza por la aparición de valores atípicos o picos de alta amplitud e
 - **Ruido de Artefacto**  
 Se refiere a señales espurias o no deseadas que se introducen en un sistema de adquisición debido a factores externos. En el caso de señales biomédicas, este ruido puede originarse por movimientos del paciente, contracciones musculares involuntarias o fallas en los electrodos. En otros sistemas, puede deberse a interferencias mecánicas, acoplamientos eléctricos o problemas en los dispositivos de medición. Su presencia es particularmente problemática en análisis donde se requiere una alta precisión, ya que puede enmascarar información clave.  
 
-# *Relación Señal-Ruido (SNR):*  
+## *Relación Señal-Ruido (SNR):*  
 La SNR es una métrica que cuantifica la calidad de una señal en presencia de ruido. Se define como la relación entre la potencia de la señal útil y la potencia del ruido, expresada en decibeles (dB):  
 
 ![image](https://github.com/user-attachments/assets/1e8aea23-a961-4183-84d3-1365ea2d3079)  
@@ -254,7 +250,7 @@ ruido_red = amplitud_ruido * np.sin(2 * np.pi * frecuencia_red * t)
 # Contaminación con ruido de red
 datos_contaminados_red = datos + ruido_red
 ```   
-El siguiente segmento de código, tiene la finalidad de generar y agregar **RUIDO DE PULSO** a una señal existente. Para ello, se define un rango de amplitud para los impulsos y se determina un porcentaje de la señal que será afectado por este ruido que se introduce de manera aleatoria. Este tipo de ruido se caracteriza por la aparición de **picos o valores extremos** en puntos específicos, lo que puede provocar distorsiones abruptas en la señal original:
+El siguiente segmento de código, tiene la finalidad de generar y agregar **RUIDO DE PULSO** a una señal existente. Para ello, se define un rango de amplitud para los impulsos y se determina un porcentaje de la señal que será afectado por este ruido que se introduce de manera aleatoria.
 
 ```python
 # Parámetros del ruido de pulso
@@ -274,7 +270,7 @@ Ahora bien, luego de ello Este código genera tres gráficas de señales electro
 2. **Segunda subgráfica** (señal EMG contaminada con ruido de red)
 3. **Tercera subgráfica** (señal EMG contaminada con ruido de pulso):
 
-En resumen, el código está generando un gráfico con tres subgráficas, cada una mostrando una señal EMG diferente: la original, una contaminada por **Ruido de Artefacto** y otra contaminada por **Ruido de Impulso** como se mostrara a continuacion: 
+Por ende, el código está generando un gráfico con tres subgráficas, cada una mostrando una señal EMG diferente: la original, una contaminada por **Ruido de Artefacto** y otra contaminada por **Ruido de Impulso** como se mostrara a continuacion: 
 
 ```python
 # Gráficas
@@ -306,22 +302,15 @@ plt.grid()
 ```
 
 ![WhatsApp Image 2025-02-06 at 8 01 20 PM](https://github.com/user-attachments/assets/a9fc06f2-006f-4df0-b9c4-3f888fe2d2ef)  
-|*Figura 4: Señal con 2 contaminaciones 8Ruido Artefacto e Impulso) a la Señal original.*|  
+|*Figura 4: Señal con 2 contaminaciones Ruido Artefacto e Impulso) a la Señal original.*|  
 En esta imagen (*Figura 4*) podemos decir que:  
 
-1. **Señal EMG Original**: Presenta variaciones en la amplitud dentro de un rango reducido, con picos característicos de actividad muscular.
-2. **Señal EMG Contaminada con Ruido de Red (60 Hz)**: Se observa una oscilación periódica superpuesta a la señal original (interferencia de 60 Hz).
-3. **Señal EMG Contaminada con Ruido de Pulso**: Muestra variaciones abruptas e irregulares, probablemente causadas por artefactos de movimiento o interferencias externas.
+1. Señal EMG Original: Presenta variaciones en la amplitud dentro de un rango reducido, con picos característicos de actividad muscular.
+2. Señal EMG Contaminada con Ruido de Red (60 Hz): Se observa una oscilación periódica superpuesta a la señal original (interferencia de 60 Hz).
+3. Señal EMG Contaminada con Ruido de Pulso: Muestra variaciones abruptas e irregulares, probablemente causadas por artefactos de movimiento o interferencias externas.
 ____________________________________________________________________________________________________
 
-El siguiente segmento de código, lo que hace es realizar varias operaciones de visualización y análisis de señales, incluyendo el cálculo de la relación señal-ruido (SNR) para dos tipos de ruido, así como la amplificación de una señal.
-
-1. Visualización  
-2. Cálculo del SNR para ruido de red
-3. Cálculo del SNR para ruido de pulso  
-4. Evaluación de amplitud
-
-Osea, este código ajusta la visualización del gráfico, calcula y muestra la relación señal-ruido (SNR) para dos tipos de ruido, y amplifica la señal original mediante un factor de amplificación:
+El siguiente segmento de código, ajusta la visualización del gráfico, calcula y lo que hace es mostrar la relación señal-ruido (SNR) para dos tipos de ruido, y amplifica la señal original mediante un factor de amplificación:
 
 ```python
 plt.tight_layout()
@@ -342,11 +331,7 @@ print(f"SNR con Ruido de Pulso: {SNR_pulso:.2f} dB")
 A = 2  # Factor de amplificación
 datos_amplificados = A * datos  
 ```
-Luego de esto, el código genera una figura con dos gráficos (subgráficos) utilizando **Matplotlib** de nuevo para visualizar nuestras señales como se muestra a continuación:  
-
-1. Primer subgráfico (Señal EMG Amplificada)
-2. Segundo subgráfico **(Señal EMG con Ruido Gaussiano)**  
-3. Ajuste y visualización
+Luego de esto, el código genera una figura con dos gráficos (subgráficos) utilizando **Matplotlib** de nuevo para visualizar nuestras señales como se muestra a continuación:    
 
 ```python
 plt.figure(figsize=(12, 8))
@@ -382,8 +367,8 @@ A continuacion, seguimos con el **Cálculo de la Relación Señal-Ruido (SNR)**
 Esta parte del código se encarga de calcular la SNR para evaluar la calidad de la señal de electromiografía (EMG) en presencia de distintos tipos de ruido.  
 
 1. Definición de la función `calcular_snr'
-2. Cálculo del SNR con ruido gaussiano:
-3. Generación de señales contaminadas:    
+2. Cálculo del SNR con ruido gaussiano
+3. Generación de señales contaminadas 
 4. Cálculo del SNR para ruido de red y ruido de pulso 
 
 ```python
@@ -429,13 +414,10 @@ ________________________________________________________________________________
 **Visualización y Análisis del Impacto del Ruido en la Señal EMG**  
 En esta parte, se encarga de **graficar y analizar** una señal de electromiografía (EMG) en diferentes condiciones, permitiendo visualizar el efecto de distintos tipos de ruido sobre la señal original.  
 
-1. Configuración de la Imagen
-2. Primer Subgráfico: Señal EMG Amplificada
-3. Segundo Subgráfico: Señal Contaminada con Ruido de Red (60 Hz) 
-4. Tercer Subgráfico: Señal Contaminada con Ruido de Pulso
-6. Cálculo e Impresión del SNR: 
-     - SNR con Ruido de Red.  
-     - SNR con Ruido de Pulso.  
+1. Primer Subgráfico: Señal EMG Amplificada
+2. Segundo Subgráfico: Señal Contaminada con Ruido de Red (60 Hz) 
+3. Tercer Subgráfico: Señal Contaminada con Ruido de Pulso
+4. Cálculo del SNR  
 
 ```python
 plt.figure(figsize=(12, 8))
@@ -469,7 +451,10 @@ plt.show()
 print(f"SNR con Ruido de Red Amplitud aplicada: {SNR_red:.2f} dB")
 print(f"SNR con Ruido de Pulso Amplitud Aplicada: {SNR_pulso:.2f} dB")
 ```  
-Esta ultima parte tiene como fin, darle una nueva amplificacion/Ruido a la señal original para cada uno de los tipos de ruido desarrollados. Por lo que nuestra parte de programacion para esta instancia ya ha sido completado. 
+Esta ultima parte tiene como fin, darle una nueva amplificacion/Ruido a la señal original para cada uno de los tipos de ruido desarrollados. Por lo que nuestra parte de programacion para esta instancia ya ha sido completado.   
+____________________________________________________________________________________________________  
+## Información Adicional:
+Para finalizar es bueno que se tenga presenta optimizar el SNR en las señales biomedicas, teniendo en cuenta que el rango ideal según la literatura para una señal EMG de calidad aceotable debe estar entre 15 dB y 30 dB para poder garantizar mediciones precisas y presentaciones gráficas fieles de la señal capturada, puesto que un valor elevado de SNR implica que la señal sea más clara en comparación con el ruido y un SNR bajo dificulta la identificación de caracteristicas relevantes debido a la presencia dominante del ruido. 
 
 ____________________________________________________________________________________________________
 
