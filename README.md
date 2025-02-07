@@ -17,7 +17,7 @@ Para ser más especificos, la condicion del Paciente (Neuropatia/Neuropatia Peri
 
 Ahora bien, luego de tener presente esta informacion, seguimos para descargar los archivos .dat y .hea correspondientes a dicha señal. Con estos archivos en nuestro poder, importamos la señal a Python (Spyder) y empleamos la librería wfdb para leer y visualizar los datos, facilitando así su analisis. 
 
-![WhatsApp Image 2025-02-06 at 7 59 35 PM](https://github.com/user-attachments/assets/3cbfddf6-fe48-4e82-902b-c402e1e92217)
+![WhatsApp Image 2025-02-06 at 7 59 35 PM](https://github.com/user-attachments/assets/3cbfddf6-fe48-4e82-902b-c402e1e92217)  
 |*Figura 1: Señal EMG de un paciente con neuropatía.*|
 
 Pues de esta señal EMG correspondiente a una neuropatía, se pueden observar varias características relevantes como lo pueden ser:
@@ -61,8 +61,8 @@ Posteriormente, empezando con la medida de nuestros estadísticos descriptivos, 
    Se calcula la media de la señal de dos formas:
    
    a) Manualmente: Sumando todos los valores y dividiendo por el total de datos.  
-	 ![image](https://github.com/user-attachments/assets/8fc3d007-fdab-4428-ab9f-0abefbf4faa0)  
-  |*Ecu 1: Formula para calcular la Media.*|  
+   ![image](https://github.com/user-attachments/assets/8fc3d007-fdab-4428-ab9f-0abefbf4faa0)    
+  |*Ecu 1: Formula para calcular la Media.*|    
    
    b) Usando Numpy.mean(), que proporciona un método más eficiente y rapido.
 ```python
@@ -84,8 +84,8 @@ print(f"Media Numpy: {mean}")
 
    a) Manualmente: Elevando al cuadrado la diferencia entre cada valor y la media, sumando y 
      dividiendo por (N-1).
-		 ![image](https://github.com/user-attachments/assets/0d53887a-40c8-41b2-8ebf-a1b651a7380e)  
-     |*Ecu 2: Formula para calcular la Desviacion Estandar.*|  
+     ![image](https://github.com/user-attachments/assets/0d53887a-40c8-41b2-8ebf-a1b651a7380e)    
+     |*Ecu 2: Formula para calcular la Desviacion Estandar.*|    
 
    b) Usando numpy.std(), con ddof=1 para la corrección muestral.
 ```python
@@ -109,8 +109,8 @@ print(f"Desviación estándar Numpy: {desviacion_muestral:.4f}")
    El siguiente segmento de nuestro código, consiste en calcular el coeficiente de variación (CV) 
    que en este caso expresa la relación entre la desviación estándar y la media como un porcentaje, 
    es decir, Indica la variabilidad de la señal en comparación con su valor promedio:    
-	 ![image](https://github.com/user-attachments/assets/6180e8bf-87da-44c1-ad19-3100e5bc88e7)    
-	 |*Ecu 3: Formula para calcular el Coeficiente de Variación.*|    
+   ![image](https://github.com/user-attachments/assets/6180e8bf-87da-44c1-ad19-3100e5bc88e7)      
+   |*Ecu 3: Formula para calcular el Coeficiente de Variación.*|      
 
 ```python
 #COEFICIENTE DE VARIACIÓN
@@ -138,8 +138,8 @@ En conclusión, NumPy es una herramienta eficiente y precisa para el cálculo es
 # 4.*Histograma & Función de Probabilidad:* 
 Este gráfico muestra la distribución de los valores de la señal EMG mediante un histograma y una estimación de densidad Kernel (KDE/permite visualizar de manera más clara la tendencia subyacente de la señal, evitando la dependencia de los límites de los bins del histograma), lo que proporciona una representación continua de la distribución de probabilidad de la amplitud de nuestra señal:
 
-![WhatsApp Image 2025-02-06 at 7 59 53 PM](https://github.com/user-attachments/assets/ef88262a-5503-4c30-a268-3bec4370eb1d)
-|*Figura 3: Resultado de Histograma junto con la Función de Pobabilidad (Campana de Gauss).*|    
+![WhatsApp Image 2025-02-06 at 7 59 53 PM](https://github.com/user-attachments/assets/ef88262a-5503-4c30-a268-3bec4370eb1d)  
+|*Figura 3: Resultado de Histograma junto con la Función de Pobabilidad (Campana de Gauss).*|      
 
 ```python
 #Histograma
