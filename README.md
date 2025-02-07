@@ -364,12 +364,7 @@ En esta parte, la imagen presenta dos gráficos que muestran el comportamiento d
 2. Gráfico inferior: Muestra la misma **señal EMG, pero contaminada con ruido gaussiano**. Se evidencia un incremento en la variabilidad de la señal debido a la presencia del ruido, lo que dificulta la identificación de los picos originales.  
 ____________________________________________________________________________________________________
 A continuacion, seguimos con el **Cálculo de la Relación Señal-Ruido (SNR)**  
-Esta parte del código se encarga de calcular la SNR para evaluar la calidad de la señal de electromiografía (EMG) en presencia de distintos tipos de ruido.  
-
-1. Definición de la función `calcular_snr'
-2. Cálculo del SNR con ruido gaussiano
-3. Generación de señales contaminadas 
-4. Cálculo del SNR para ruido de red y ruido de pulso 
+Esta parte del código se encarga de calcular la SNR para evaluar la calidad de la señal de electromiografía (EMG) en presencia de distintos tipos de ruido.
 
 ```python
 # --- CÁLCULO DEL SNR ---
