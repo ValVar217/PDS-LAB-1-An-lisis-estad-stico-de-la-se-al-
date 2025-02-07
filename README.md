@@ -389,7 +389,7 @@ SNR_red = calcular_snr(datos_amplificados, ruido_red)
 SNR_pulso = calcular_snr(datos_amplificados, ruido_pulso)  
 ```
 
-Es importante tener en cuenta que esta es fundamental en aplicaciones como señales biomédicas (ECG, EMG, EEG), comunicaciones digitales y procesamiento de audio e imágenes.  Por consiguiente, tenemos la implementacion de la *Ecu. 4* para poder obtener la Relacion Señal-Ruido (SNR), en donde obtuvimos lo siguientes resultados:      
+Por consiguiente, tenemos la implementacion de la *Ecu. 4* para poder obtener la Relacion Señal-Ruido (SNR), en donde obtuvimos lo siguientes resultados:      
 
 ![WhatsApp Image 2025-02-06 at 8 03 05 PM](https://github.com/user-attachments/assets/f82d331b-1522-4f8c-9ddf-d754acd4f222)  
 |*Figura 6: Resultados obtenidos mediante la implementacion de la ecuacion de SNR.*| 
