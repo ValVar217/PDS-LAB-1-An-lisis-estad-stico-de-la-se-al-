@@ -1,0 +1,52 @@
+import wfdb  # Para leer señales fisiológicas
+import numpy as np  # Para manejar datos numéricos
+import plotly.graph_objects as go  # Para graficar
+
+# 📂 Ruta del archivo SIN extensión (coloca la ruta exacta)
+record_path = r"C:/Users/marce/Documents/LAB - PROC. SEÑALES/LAB 1/Señal - Neuropatia EMG/emg_neuropathy"
+record_path = r"C:/Users/marce/Documents/LAB - PROC. SEÑALES/LAB 1/Señal - Neuropatia EMG/emg_neuropathy"
+
+
+try:
+    # 🔹 Cargar la señal con wfdb
+    record = wfdb.rdrecord(record_path)  # Lee los archivos .dat y .hea
+    signal = record.p_signal  # Extraer la señal
+    fs = record.fs  # Obtener la frecuencia de muestreo
+    num_canales = record.n_sig  # Número de canales
+
+    # 🔹 Mostrar información de la señal
+    print("📌 Información de la señal:")
+    print(f"- Nombre del registro: {record.record_name}")
+    print(f"- Frecuencia de muestreo: {fs} Hz")
+    print(f"- Duración: {len(signal) / fs:.2f} segundos")
+    print(f"- Número de canales: {num_canales}")
+
+    # 🔹 Convertir el tiempo en segundos
+    tiempo = np.arange(len(signal)) / fs  
+
+    # 🔹 Crear la figura
+    fig = go.Figure()
+
+    # 🔹 Graficar cada canal de la señal
+    for i in range(num_canales):
+        fig.add_trace(go.Scatter(x=tiempo, y=signal[:, i], mode="lines", name=f"Canal {i+1}"))
+
+    # 🔹 Personalizar el gráfico
+    fig.update_layout(
+        title="Señal EMG Neuropatía - PhysioNet",
+        xaxis_title="Tiempo (s)",
+        yaxis_title="Amplitud",
+        template="plotly_dark",
+        hovermode="x",
+    )
+
+    # 🔹 Mostrar gráfico interactivo
+    fig.show()
+
+except FileNotFoundError:
+    print("❌ ERROR: No se encontraron los archivos .dat y .hea en la ruta indicada.")
+    print("🔹 Verifica que el archivo esté en:", record_path)
+    print("🔹 Asegúrate de escribir bien el nombre del archivo sin la extensión.")
+
+except Exception as e:
+    print("❌ ERROR inesperado:", e)
